@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    environment {
+        REPO_LINK = 'https://github.com/askyourmentors/full-stack-crud-project-with-react-node-mysql.git'
+        REPO_BRANCH = 'main'
+    }
+    stages {
+        stage('Hello-1') {
+            steps {
+                echo 'Hello World-1'
+            }
+        }
+        stage('Hello-2') {
+            steps {
+                echo 'Hello World-2'
+            }
+        }
+        stage('Clone repository') {
+            steps {
+                echo 'Cloning repository from ${REPO_LINK}'
+
+                git branch: env.REPO_BRANCH, url: env.REPO_LINK
+
+                script {
+                    sh "ls -lah"
+                }
+            }
+        }
+    }
+}
